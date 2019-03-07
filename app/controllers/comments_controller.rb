@@ -1,11 +1,11 @@
+require_relative '../helpers/comments_helper'
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :update, :destroy]
 
   # GET /comments
   def index
-    @comments = Comment.all
-
-    render json: @comments
+    @comments = CommentsHelper::CommentsHelperService.new.get_comments_with_post(params[:post_id], params[:offset]||=0)
+    render json: @comments, status: 200
   end
 
   # GET /comments/1

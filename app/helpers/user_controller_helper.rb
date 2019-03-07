@@ -5,4 +5,4 @@ module UserHelper
       Post.where(user_id: user_id).limit(5).offset(offset).order('created_at DESC')
     end
   end
- end
+end

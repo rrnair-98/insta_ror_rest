@@ -14,11 +14,13 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :posts, only: %i[update destroy] do
-    resources :comments, only: %i[new index]
-    collection do
-      get ':offset/', action: :index, constraints: { offset: /[0-9]+/ }
+  resources :posts, only: %i[update destroy], constraints: { post_id: /[0-9]+/ } do
+    resources :comments, only: %i[new index]do
+      collection do
+        get ':offset/', action: :index, constraints: { offset: /[0-9]+/ }
+      end
     end
+
     # likes controller
     resources :likes, only: %i[new destroy index] do
       collection do
