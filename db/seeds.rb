@@ -7,6 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'faker'
 
+
 def createUsersAndPosts
   @i = 20
   20.times do
@@ -27,14 +28,23 @@ def createUsersAndPosts
 
 end
 
-def insertLikesAndComments
-  @i= User.count
-  print(@i)
-  @i.times do
+# this takes a long time :)
+def insert_likes_and_comments
+  num_users = User.count
+  num_posts = Post.count
+  post_iter = 1
+  num_posts.times do
+    user_iter = 1
 
-    Comment.create
+    num_users.times do
+      Like.create(post_id: post_iter, user_id: user_iter)
+      Comment.create(user_id: user_iter, post_id: post_iter, desc: Faker::LeagueOfLegends.quote)
+      user_iter += 1
+    end
 
+    post_iter += 1
   end
 end
 
+insert_likes_and_comments
 #createUsersAndPosts
