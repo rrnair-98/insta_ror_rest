@@ -21,6 +21,7 @@ gem 'jwt', :git => 'https://github.com/jwt/ruby-jwt', :branch => 'master'
 gem 'rubocop'
 gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 gem 'rspec-rails'
+gem 'active_model_serializers'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 

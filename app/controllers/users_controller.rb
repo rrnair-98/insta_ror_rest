@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :update, :destroy]
+  before_action :set_user, only: %i[show update destroy]
 
 
   # GET /users
@@ -15,7 +15,12 @@ class UsersController < ApplicationController
 
   # GET /users/1
   def show
-    render json: @user
+    @user = User.joins(:follows).
+            where(id: params[:id]).
+            select('users.id', 'users.email', 'users.status', 'users.name', 'count(follows.follower_id) as num_followers').group('users.id')
+
+
+    render json: @user, serializer_class: UserInfoSerializerSerializer
   end
 
   # POST /users

@@ -11,6 +11,10 @@ Rails.application.routes.draw do
         get ':offset/', action: :index, constraints: { offset: /[0-9]+/ }
       end
 
+      resources :follows, only: %i[new destroy]
+
+
+
     end
   end
 

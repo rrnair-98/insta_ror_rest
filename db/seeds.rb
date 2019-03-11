@@ -46,5 +46,25 @@ def insert_likes_and_comments
   end
 end
 
-insert_likes_and_comments
+def add_followers
+  num_users = User.count -1
+  user_iter = 1
+  current_iter = 0
+  num_users.times do
+    user_iter = 1
+    21.times do
+      if user_iter != current_iter
+        Follow.create(user_id:current_iter, follower_id: user_iter)
+
+
+      end
+      user_iter += 1
+    end
+    current_iter += 1
+  end
+
+end
+
+add_followers
+#insert_likes_and_comments
 #createUsersAndPosts
